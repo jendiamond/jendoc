@@ -1,5 +1,11 @@
 class DocsController < ApplicationController
+  before_action :find_doc, only: [:show, :edit, :update, :destroy]
+
   def index
+    @docs = Doc.all.order("created_at DESC")
+  end
+
+  def show
   end
 
   def new
@@ -18,9 +24,6 @@ class DocsController < ApplicationController
   def edit
   end
 
-  def show
-  end
-
   def update
   end
 
@@ -30,6 +33,7 @@ class DocsController < ApplicationController
   private
 
   def find_doc
+    @doc = Doc.find(params[:id])
   end
 
   def doc_params
